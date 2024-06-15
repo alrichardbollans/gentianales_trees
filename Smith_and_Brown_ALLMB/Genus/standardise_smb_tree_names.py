@@ -85,9 +85,6 @@ def main():
     standard_tree_file = os.path.join(_temp_outputs_path, 'standardised_gentianales_smb_tree.tre')
     relabel_tree(FAMILIES_IN_GENTIANALES, standard_tree_file)
 
-    standard_apoc_log_rub_file = os.path.join(_temp_outputs_path, 'standardised_apoc_log_rub_smb_tree.tre')
-    relabel_tree(MY_MAIN_FAMILIES, standard_apoc_log_rub_file)
-
 
 if __name__ == '__main__':
     main()

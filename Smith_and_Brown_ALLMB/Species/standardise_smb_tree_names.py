@@ -2,7 +2,7 @@ import os
 import re
 
 import pandas as pd
-from library_info import WCVP_VERSION
+from library_info import WCVP_VERSION, FAMILIES_IN_GENTIANALES
 from pkg_resources import resource_filename
 from wcvpy.wcvp_download import wcvp_accepted_columns
 from wcvpy.wcvp_name_matching import get_accepted_info_from_names_in_column
@@ -81,9 +81,8 @@ def relabel_tree(families_of_interest: list, outfile: str):
 
 
 def main():
-    standard_apoc_log_rub_file = os.path.join(_temp_outputs_path, 'standardised_apoc_log_rub_smb_tree.tre')
-
-    relabel_tree(['Apocynaceae', 'Loganiaceae', 'Rubiaceae'], standard_apoc_log_rub_file)
+    standard_tree_file = os.path.join(_temp_outputs_path, 'standardised_gentianales_smb_tree.tre')
+    relabel_tree(FAMILIES_IN_GENTIANALES, standard_tree_file)
 
 
 if __name__ == '__main__':
