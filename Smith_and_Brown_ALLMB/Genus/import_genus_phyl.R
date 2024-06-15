@@ -36,18 +36,26 @@ remove_duplicated_tips <- function(tree){
 
 ### Importing
 ## Get gentianales tree
-smb_tree_ = ggtree::read.tree(file.path('inputs','v0.1','ALLMB.tre'))
+smb_tree_ = ggtree::read.tree(file.path('..','v0.1','ALLMB.tre'))
 gentianales_tree = ape::extract.clade(smb_tree_,c('Gentianales.rn.d8s.tre'))
-ape::write.tree(gentianales_tree, file=file.path('inputs','SMB_ALLMB_Gentianales.tre'))
+ape::write.tree(gentianales_tree, file=file.path('..','SMB_ALLMB_Gentianales.tre'))
 p = ggtree::ggtree(gentianales_tree,layout="circular") +
   ggtree::geom_tiplab2(size=2, show.legend=FALSE)
-ggplot2::ggsave(file=file.path('inputs','SMB_ALLMB_Gentianales.jpg'),width=20, height=16,
+ggplot2::ggsave(file=file.path('..','SMB_ALLMB_Gentianales.jpg'),width=20, height=16,
                dpi = 300, limitsize=FALSE)
+# 
+# for (x in gentianales_tree$node.label){
+#   if (grepl('Gal',x, fixed = TRUE)){
+#     print(x)
+#   }
+# }
 
-# Then reimport the tree with names standardised by automatchnames
+# Then reimport the tree with names standardised by wcvpy
 # Matched with 'fuzzy' to avoid species being matched to genera
 # There were quite a few genera synonyms in there! e.g. Labordia, Chazaliella etc..
-standardised_smb_tree = ggtree::read.tree(file.path('inputs','standardised_smb_tree.tre'))
+standardised_smb_tree = ggtree::read.tree(file.path('temp_outputs','standardised_gentianales_smb_tree.tre'))
+accepted_genus_list <- readLines(file.path('inputs','genus_list.txt'))
+
 
 testit::assert("Check name standardisation preserves tree tips", length(gentianales_tree$tip.label) == length(standardised_smb_tree$tip.label))
 # This plot just confirms some of the branches creating a big polytomy from the main Rubiaceae branch
@@ -59,7 +67,7 @@ check = ape::keep.tip(gentianales_tree, c('Strychnos_cathayensis','Mostuea_surin
 plot(check)
 
 ## Find nodes and tips of accepted genera
-accepted_genus_list <- readLines(file.path('inputs','genus_list.txt'))
+
 common_genera = intersect(accepted_genus_list,standardised_smb_tree$node.label)
 common_genera
 #### Add genus nodes as tips
