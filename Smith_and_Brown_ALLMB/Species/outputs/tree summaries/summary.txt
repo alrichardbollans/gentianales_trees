@@ -1,2 +1,1 @@
-num_sp_in_original_tree: 21165
-num_sp_in_labelled_tree: 502
+num_sp_in_final_tree: 22388
