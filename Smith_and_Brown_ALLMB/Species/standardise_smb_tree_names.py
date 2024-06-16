@@ -51,7 +51,7 @@ def substitute_name_in_tree(tree_string: str, old_name: str, new_name: str):
 
 
 def relabel_tree(families_of_interest: list, outfile: str):
-    f = open(tree_file, "r")
+    f = open(tree_file, "r", encoding='utf-8')
     tree_string = f.readline()
     # From https://stackoverflow.com/questions/45668107/python-regex-parsing-newick-format
     rx = r'[(),]+([^;:]+)(?=;|:)'  # Looks for any combination of ((,, greedily, then ahead matches any non ;: characters and terminates with a ; or :
@@ -76,7 +76,7 @@ def relabel_tree(families_of_interest: list, outfile: str):
         elif row['tree_name'] != 'Gentianales.rn.d8s.tre':
             tree_string = substitute_name_in_tree(tree_string, row['tree_name'], 'NON_FAMILY_TIP')
 
-    f = open(outfile, "w")
+    f = open(outfile, "w", encoding='utf-8')
     f.writelines([tree_string])
 
 
