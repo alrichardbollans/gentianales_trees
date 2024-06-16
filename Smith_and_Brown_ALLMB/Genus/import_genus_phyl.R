@@ -142,7 +142,7 @@ new_common_genera1 = intersect(accepted_genus_list,genus_tree$tip.label)
 testit::assert("Check extracting nodes preserves important nodes", length(new_common_genera) == length(new_common_genera1))
 p = ggtree::ggtree(genus_tree,layout="circular") +
   ggtree::geom_tiplab2(size=2, show.legend=FALSE)
-ggplot2::ggsave(file=file.path('inputs','SMB_Gentianales_Genus_tree.jpg'),width=20, height=16,
+ggplot2::ggsave(file=file.path('outputs','SMB_Gentianales_Genus_tree.jpg'),width=20, height=16,
                 dpi = 300, limitsize=FALSE)
 
 deduplicated_genus_tree = remove_duplicated_tips(genus_tree)
@@ -150,6 +150,6 @@ deduplicated_genus_tree = phytools::force.ultrametric(deduplicated_genus_tree, m
 testit::assert("Check extracting nodes preserves important nodes", length(new_common_genera1) == length(intersect(accepted_genus_list,deduplicated_genus_tree$tip.label)))
 p = ggtree::ggtree(deduplicated_genus_tree,layout="circular") +
   ggtree::geom_tiplab2(size=2, show.legend=FALSE)
-ggplot2::ggsave(file=file.path('inputs','SMB_Gentianales_Genus_tree_deduplicated.jpg'),width=20, height=16,
+ggplot2::ggsave(file=file.path('outputs','SMB_Gentianales_Genus_tree_deduplicated.jpg'),width=20, height=16,
                dpi = 300, limitsize=FALSE)
-ape::write.tree(deduplicated_genus_tree, file=file.path('inputs','prepared_final_smbtree.tre'))
+ape::write.tree(deduplicated_genus_tree, file=file.path('outputs','prepared_final_smbtree.tre'))

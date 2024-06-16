@@ -1,2 +1,1 @@
-num_genera_in_original_tree: 984
-num_genera_in_labelled_tree: 210
+num_genera_in_final_tree: 984

@@ -6,7 +6,7 @@ from pkg_resources import resource_filename
 from wcvpy.wcvp_download import wcvp_accepted_columns
 from wcvpy.wcvp_name_matching import get_accepted_info_from_names_in_column
 
-from library_info import FAMILIES_IN_GENTIANALES, WCVP_VERSION, MY_MAIN_FAMILIES
+from library_info import FAMILIES_IN_GENTIANALES, WCVP_VERSION
 
 _temp_outputs_path = resource_filename(__name__, 'temp_outputs')
 
@@ -51,7 +51,7 @@ def substitute_name_in_tree(tree_string: str, old_name: str, new_name: str):
 
 
 def relabel_tree(families_of_interest: list, outfile: str):
-    f = open(tree_file, "r")
+    f = open(tree_file, "r") # Should include utf8 encoding here
     tree_string = f.readline()
     # From https://stackoverflow.com/questions/45668107/python-regex-parsing-newick-format
     rx = r'[(),]+([^;:]+)\b'  # Note this maybe doesn't appropriately deal with hybrid characters like × or names ending in full stops
@@ -62,8 +62,8 @@ def relabel_tree(families_of_interest: list, outfile: str):
     df = pd.DataFrame(zipped, columns=['tree_name', 'binomial_name'])
 
     # Maybe without full matching, less erroneous matches to genera
-    # acc_name_df = get_accepted_info_from_names_in_column(df, 'binomial_name', match_level='fuzzy', use_open_refine=False, wcvp_version=WCVP_VERSION)
-    # acc_name_df.to_csv(os.path.join('inputs', 'acc_name_tree_Gentianales.csv'))
+    acc_name_df = get_accepted_info_from_names_in_column(df, 'binomial_name', match_level='fuzzy', use_open_refine=False, wcvp_version=WCVP_VERSION)
+    acc_name_df.to_csv(os.path.join('inputs', 'acc_name_tree_Gentianales.csv'))
     acc_name_df = pd.read_csv(os.path.join('inputs', 'acc_name_tree_Gentianales.csv'), index_col=0)
 
     # Catch words in tree string by left hand word boundaries (generic) and right hand ; or : characters
@@ -77,7 +77,7 @@ def relabel_tree(families_of_interest: list, outfile: str):
         elif row['tree_name'] != 'Gentianales.rn.d8s.tre':
             tree_string = substitute_name_in_tree(tree_string, row['tree_name'], 'NON_FAMILY_TIP')
 
-    f = open(outfile, "w")
+    f = open(outfile, "w") # Should include utf8 encoding here
     f.writelines([tree_string])
 
 

@@ -32,7 +32,7 @@ Asketanthera
 Macrocnemum
 Genianthus
 Piaranthus
-× Tridentapelia
+Ã— Tridentapelia
 Jamaicanthus
 Agathisanthemum
 Carpacoce
@@ -85,7 +85,7 @@ Fadogiella
 Macbrideina
 Peplonia
 Tromotriche
-× Galiasperula
+Ã— Galiasperula
 Gardeniopsis
 Heterophyllaea
 Keetia
@@ -111,7 +111,7 @@ Neanotis
 Plocama
 Spongiosperma
 Gymnema
-× Hoodiotriche
+Ã— Hoodiotriche
 Nautonia
 Melanopsidium
 Landiopsis
@@ -179,7 +179,7 @@ Alyxia
 Boholia
 Bothriospora
 Tinadendron
-× Staparesia
+Ã— Staparesia
 Bartonia
 Vahadenia
 Raritebe
@@ -686,7 +686,7 @@ Mucoa
 Cinchonopsis
 Papuechites
 Spirolobium
-× Hoodiorbea
+Ã— Hoodiorbea
 Bouvardia
 Tapeinostemon
 Voyria
@@ -912,7 +912,7 @@ Trailliaedoxa
 Chapelieria
 Streblosiopsis
 Morilloa
-× Duvaliaranthus
+Ã— Duvaliaranthus
 Hypolobus
 Pentatropis
 Cryptolepis
@@ -976,7 +976,7 @@ Rhadinopus
 Trichosandra
 Kamettia
 Decanema
-× Hoodiapelia
+Ã— Hoodiapelia
 Roraimaea
 Tachia
 Coutareopsis
@@ -1026,7 +1026,7 @@ Pachystylus
 Placocarpa
 Harmandiella
 Oncinema
-× Stapvalia
+Ã— Stapvalia
 Orphium
 Galianthe
 Pseudonesohedyotis
@@ -1109,7 +1109,7 @@ Bahiella
 Praravinia
 Baroniella
 Cryptostegia
-× Orbelia
+Ã— Orbelia
 Thoreauea
 Greenea
 Everistia
