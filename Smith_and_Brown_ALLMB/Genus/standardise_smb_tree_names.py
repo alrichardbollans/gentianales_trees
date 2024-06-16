@@ -43,7 +43,7 @@ def get_binomial_from_label(leaf: str):
 
 
 def substitute_name_in_tree(tree_string: str, old_name: str, new_name: str):
-    pattern = r'\b{}(?=;|:)'.format(re.escape(old_name))
+    pattern = r'(?<=[(),])({})(?=;|:)'.format(re.escape(old_name))
     # Note ape will not read spaces, so add underscores back to names
     tree_string = re.sub(pattern, new_name.replace(' ', '_'), tree_string)
 
@@ -54,7 +54,7 @@ def relabel_tree(families_of_interest: list, outfile: str):
     f = open(tree_file, "r", encoding='utf-8') # Should include utf8 encoding here
     tree_string = f.readline()
     # From https://stackoverflow.com/questions/45668107/python-regex-parsing-newick-format
-    rx = r'[(),]+([^;:]+)\b'  # Note this maybe doesn't appropriately deal with hybrid characters like × or names ending in full stops
+    rx = r'[(),]+([^;:]+)(?=;|:)'  # Looks for any combination of ((,, greedily, then ahead matches any non ;: characters and terminates with a ; or :
     name_list = re.findall(rx, tree_string)
     binomial_names = [get_binomial_from_label(x) for x in name_list]
     zipped = list(zip(name_list, binomial_names))

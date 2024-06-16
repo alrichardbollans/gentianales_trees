@@ -11,7 +11,7 @@ source(here('helpful_phyl_methods.R'))
 
 # A gentianales version of the smb tree, with names standardised
 # The process for this will need improving e.g. by dropping genera and removing other families.
-standardised_smb_tree = ape::read.tree(file.path('temp_outputs','standardised_smb_tree.tre'))
+standardised_smb_tree = ape::read.tree(file.path('..','Genus','temp_outputs','standardised_smb_tree.tre'))
 
 duplicated_tips = which(duplicated(standardised_smb_tree$tip.label))
 # Check for repeated tips
