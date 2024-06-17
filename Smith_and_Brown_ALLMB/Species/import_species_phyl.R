@@ -3,10 +3,11 @@ library(dplyr)
 
 ## Process
 # - Extract gentianales clade
-# - Standardise names in tree to WCVP and remove non-species tips and tips not in study families.
-# - Remove duplicate tips
+# - Standardise names in tree to WCVP and remove synonyms (issues with e.g. Tabernaemontana/Nerium duplicates)
+# - Remove duplicate tips and non accepted name tips
 # - Add unrepresented species as polytomies. Note that not all species are succesfully matched to a genus
 # A gentianales version of the smb tree, with names standardised
+
 standardised_smb_tree = ape::read.tree(file.path('..','Genus','temp_outputs','standardised_gentianales_smb_tree.tre'))
 standardised_smb_tree = ape::drop.tip(standardised_smb_tree,c('NON_FAMILY_TIP'))
 
@@ -78,7 +79,7 @@ cleaned_tree_with_polytomies = polytomy_output$tree
 names_not_in_tree = polytomy_output$names_not_in_tree
 namesin_tree = polytomy_output$namesin_tree
 
-ape::write.tree(cleaned_tree_with_polytomies, file.path('outputs','prepared_smb_species.tre'))
+ape::write.tree(cleaned_tree_with_polytomies, file.path('outputs','final_SMB_Gentianales_species_tree.tre'))
 
 fileConn<-file(file.path('outputs','tree summaries','species not in tree.txt'))
 writeLines(c(paste(names_not_in_tree, sep='')),fileConn)
