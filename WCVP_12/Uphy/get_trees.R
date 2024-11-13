@@ -1,3 +1,5 @@
+# devtools::install_github("jinyizju/U.PhyloMaker") #https://github.com/jinyizju/U.PhyloMaker
+
 megatree = ape::read.tree(file.path('inputs', 'plant_megatree.tre'))# from https://github.com/megatrees/plant_20221117/tree/main
 
 splist = read.csv(file.path('inputs', 'species_family_list.csv'))

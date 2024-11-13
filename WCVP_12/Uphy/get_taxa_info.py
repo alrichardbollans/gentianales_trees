@@ -1,5 +1,6 @@
 import os
 
+import numpy as np
 import pandas as pd
 from pkg_resources import resource_filename
 from wcvpy.wcvp_download import wcvp_columns, get_all_taxa, wcvp_accepted_columns
@@ -11,6 +12,17 @@ _inputs_path = resource_filename(__name__, 'inputs')
 
 
 # TODO: Use name matching to get species.relative information
+def make_hybrid_epithet_one_word(name):
+    ## Doesn't seem like uphylomaker can handle hybrids
+    if name is not None and name==name:
+        if '×' in name:
+            return np.nan
+            # return name.replace('× ', '×_')
+        else:
+            return name
+    else:
+        return name
+
 def main():
     # Get sp relative information using synonym information from original smb tree
     name_matching_file_from_smb = pd.read_csv(os.path.join('..', 'Smith_and_Brown_ALLMB','Genus', 'inputs', 'acc_name_tree_Gentianales.csv'))
@@ -38,7 +50,8 @@ def main():
     species_df = species_df.reset_index(drop=True)
 
     species_df = pd.merge(species_df, name_matching_file_from_smb, on='species', how='left')
-
+    species_df['species'] = species_df['species'].apply(make_hybrid_epithet_one_word)
+    species_df = species_df.dropna(subset=['species'])
     species_df.to_csv(os.path.join('inputs', 'species_family_list.csv'), index=False)
 
     genus_df = species_df[['genus', 'family']]
