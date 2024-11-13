@@ -4,7 +4,7 @@ megatree = ape::read.tree(file.path('inputs', 'plant_megatree.tre'))# from https
 
 splist = read.csv(file.path('inputs', 'species_family_list.csv'))
 
-## TODO: some sort of fix for hybrids
+## TODO: Currently hybrids have been removed as I tried a few fixes that didnt work. some sort of fix for hybrids
 gen_list = read.csv(file.path('inputs', 'genus_family_list.csv'))
 
 result = U.PhyloMaker::phylo.maker(sp.list = splist, tree = megatree, 

@@ -15,7 +15,7 @@ _inputs_path = resource_filename(__name__, 'inputs')
 def make_hybrid_epithet_one_word(name):
     ## Doesn't seem like uphylomaker can handle hybrids
     if name is not None and name==name:
-        if '×' in name:
+        if name.startswith('×'):
             return np.nan
             # return name.replace('× ', '×_')
         else:
