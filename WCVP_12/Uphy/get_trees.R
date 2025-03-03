@@ -4,7 +4,8 @@ megatree = ape::read.tree(file.path('inputs', 'plant_megatree.tre'))# from https
 
 splist = read.csv(file.path('inputs', 'species_family_list.csv'))
 
-## TODO: Currently hybrids have been removed as I tried a few fixes that didnt work. some sort of fix for hybrids
+## TODO: Currently hybrid genera have been removed as I tried a few fixes that didnt work. some sort of fix for hybrids
+## https://github.com/jinyizju/U.PhyloMaker/issues/6
 gen_list = read.csv(file.path('inputs', 'genus_family_list.csv'))
 
 result = U.PhyloMaker::phylo.maker(sp.list = splist, tree = megatree, 
@@ -21,6 +22,10 @@ fileConn<-file(file.path('outputs','Species','summary.txt'))
 writeLines(c(paste('num_sp_in_final_tree: ', num_sp_in_tree, sep='')), 
            fileConn)
 close(fileConn)
+
+sp_tree_distances = ape::cophenetic.phylo(gentianales_sp_tree)
+write.csv(sp_tree_distances, file = file.path('outputs','Species',
+                                              'species_distances.csv'))
 
 p = ggtree::ggtree(gentianales_sp_tree,layout="circular") +
   ggtree::geom_tiplab2(size=2, show.legend=FALSE)
@@ -179,7 +184,9 @@ ggplot2::ggsave(file=file.path('outputs', 'Genus','Uphylomaker_genus_tree.jpg'),
                 dpi = 300, limitsize=FALSE)
 ape::write.tree(genus_tree, file=file.path('outputs', 'Genus','Uphylomaker_genus_tree.tre'))
 
-
+genus_tree_distances = ape::cophenetic.phylo(genus_tree)
+write.csv(genus_tree_distances, file = file.path('outputs','Genus',
+                                              'genus_distances.csv'))
 
 num_genera_in_tree = length(genus_tree$tip.label)
 
@@ -187,4 +194,6 @@ fileConn<-file(file.path('outputs', 'Genus','Uphylomaker_genus_tree_summary.txt'
 writeLines(c(paste('num_genera_in_final_tree: ', num_genera_in_tree, sep='')), 
            fileConn)
 close(fileConn)
+
+
 
